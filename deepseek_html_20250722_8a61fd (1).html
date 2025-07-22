@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox Condo - Comunidade Exclusiva</title>
+    <style>
+        /* Reset e Estilos Globais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #0f0f12;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #00a2ff;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #5865F2; /* Cor do Discord */
+            color: #fff;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn:hover {
+            background: #4752C4;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(88, 101, 242, 0.3);
+        }
+        
+        /* Cabeçalho */
+        header {
+            background: rgba(15, 15, 18, 0.9);
+            padding: 20px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(90deg, #00a2ff, #5865F2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        nav ul {
+            display: flex;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: #ffffff;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 16px;
+        }
+        
+        nav ul li a:hover {
+            color: #00a2ff;
+        }
+        
+        /* Banner Principal */
+        .hero {
+            background: radial-gradient(circle at 75% 50%, #1a1a2e 0%, #0f0f12 70%);
+            padding: 180px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(88, 101, 242, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+            z-index: 0;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 64px;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #ffffff, #00a2ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: #b8b8b8;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid #5865F2;
+            color: #ffffff;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(88, 101, 242, 0.1);
+        }
+        
+        /* Seção de Recursos */
+        .features {
+            padding: 100px 0;
+            background: #0f0f12;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #ffffff, #00a2ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .section-title p {
+            color: #b8b8b8;
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 18px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: rgba(30, 30, 40, 0.5);
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 162, 255, 0.1);
+            border-color: rgba(0, 162, 255, 0.2);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #00a2ff, #5865F2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 32px;
+        }
+        
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+        
+        .feature-card p {
+            color: #b8b8b8;
+            font-size: 16px;
+        }
+        
+        /* Seção Discord */
+        .discord {
+            padding: 100px 0;
+            background: radial-gradient(circle at center, #2C2F33 0%, #23272A 100%);
+            text-align: center;
+        }
+        
+        .discord-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .discord h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+        
+        .discord p {
+            color: #b8b8b8;
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+        
+        .discord-widget {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Seção FAQ */
+        .faq {
+            padding: 100px 0;
+            background: #0f0f12;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 20px;
+            background: rgba(30, 30, 40, 0.5);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background: rgba(30, 30, 40, 0.7);
+        }
+        
+        .faq-question::after {
+            content: '+';
+            font-size: 24px;
+        }
+        
+        .faq-item.active .faq-question::after {
+            content: '-';
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            background: rgba(20, 20, 30, 0.5);
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 500px;
+        }
+        
+        /* Rodapé */
+        footer {
+            background: #0a0a0c;
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            font-size: 20px;
+            margin-bottom: 25px;
+            color: #ffffff;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, #00a2ff, #5865F2);
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-col ul li a {
+            color: #b8b8b8;
+            transition: color 0.3s ease;
+            font-size: 15px;
+        }
+        
+        .footer-col ul li a:hover {
+            color: #00a2ff;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: #5865F2;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: #b8b8b8;
+            font-size: 14px;
+        }
+
+        /* Estilos para o bot de imagens */
+        .image-bot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .image-bot-button {
+            background: linear-gradient(135deg, #00a2ff, #5865F2);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .image-bot-button:hover {
+            transform: scale(1.1);
+        }
+
+        .image-bot-panel {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 300px;
+            background: rgba(30, 30, 40, 0.95);
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+            display: none;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .image-bot-panel.active {
+            display: block;
+        }
+
+        .image-bot-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .image-bot-title {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .image-bot-close {
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .image-bot-content {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .image-bot-image {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .image-bot-image:hover {
+            transform: scale(1.02);
+        }
+
+        .image-bot-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .image-bot-controls button {
+            background: rgba(88, 101, 242, 0.3);
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .image-bot-controls button:hover {
+            background: #5865F2;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            nav ul li {
+                margin: 10px;
+            }
+            
+            .hero h1 {
+                font-size: 42px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section-title h2 {
+                font-size: 32px;
+            }
+
+            .image-bot-panel {
+                width: 250px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">Roblox Condo</div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#features">Recursos</a></li>
+                    <li><a href="#discord">Discord</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="https://discord.gg/yMPrpfwH" class="btn">Entrar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Banner Principal -->
+    <section class="hero" id="home">
+        <div class="hero-content container">
+            <h1>Junte-se à Maior Comunidade Roblox Condo</h1>
+            <p>Descubra os melhores condomínios, faça amigos e divirta-se em nossa comunidade exclusiva no Discord com milhares de membros ativos.</p>
+            <div class="hero-buttons">
+                <a href="https://discord.gg/yMPrpfwH" class="btn">Entrar no Discord</a>
+                <a href="#features" class="btn btn-secondary">Saiba Mais</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Recursos -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nossos Recursos</h2>
+                <p>Tudo o que você precisa para aproveitar ao máximo a experiência Roblox Condo</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Comunidade Ativa</h3>
+                    <p>Milhares de membros ativos diariamente, sempre prontos para novas aventuras e amizades.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Condos Exclusivos</h3>
+                    <p>Acesso a condomínios privados e exclusivos apenas para membros da nossa comunidade.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>Eventos Diários</h3>
+                    <p>Eventos, sorteios e competições com prêmios incríveis para nossos membros.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Segurança</h3>
+                    <p>Moderação ativa 24/7 para garantir uma experiência segura e divertida para todos.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Bots Exclusivos</h3>
+                    <p>Nossos bots oferecem recursos únicos para melhorar sua experiência no servidor.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Sistema de VIP</h3>
+                    <p>Vantagens exclusivas para membros VIP com benefícios especiais no servidor.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Discord -->
+    <section class="discord" id="discord">
+        <div class="container discord-container">
+            <h2>Junte-se ao Nosso Discord</h2>
+            <p>Nosso servidor Discord é o centro da comunidade Roblox Condo, com canais organizados, voz ativa e muito mais!</p>
+            <a href="https://discord.gg/yMPrpfwH" class="btn">Entrar Agora</a>
+            
+            <div class="discord-widget">
+                <iframe src="https://discord.com/widget?id=SEU_ID_DO_SERVIDOR&theme=dark" width="100%" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção FAQ -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>Perguntas Frequentes</h2>
+                <p>Tire suas dúvidas sobre a comunidade Roblox Condo</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">O que é Roblox Condo?</div>
+                    <div class="faq-answer">
+                        <p>Roblox Condo é uma comunidade dedicada a entusiastas de condomínios no Roblox, onde você pode encontrar os melhores condomínios, fazer amigos e participar de eventos exclusivos.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Como posso entrar no servidor Discord?</div>
+                    <div class="faq-answer">
+                        <p>Basta clicar em qualquer um dos botões "Entrar no Discord" neste site ou acessar diretamente: <a href="https://discord.gg/yMPrpfwH">https://discord.gg/yMPrpfwH</a></p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">O servidor é gratuito?</div>
+                    <div class="faq-answer">
+                        <p>Sim, a participação no servidor é completamente gratuita. Temos opções VIP com benefícios extras para quem quiser apoiar a comunidade.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Há restrições de idade?</div>
+                    <div class="faq-answer">
+                        <p>Nossa comunidade é aberta para todas as idades, mas recomendamos que menores de 13 anos participem com supervisão de um responsável.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Como funcionam os eventos?</div>
+                    <div class="faq-answer">
+                        <p>Realizamos eventos semanais com diferentes temas e premiações. Todos os detalhes são anunciados no servidor Discord com antecedência.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>Roblox Condo</h3>
+                    <p>A maior comunidade de condomínios no Roblox. Junte-se a nós e divirta-se!</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#features">Recursos</a></li>
+                        <li><a href="#discord">Discord</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Comunidade</h3>
+                    <ul>
+                        <li><a href="https://discord.gg/yMPrpfwH">Servidor Discord</a></li>
+                        <li><a href="#">Regras</a></li>
+                        <li><a href="#">Equipe</a></li>
+                        <li><a href="#">Parceiros</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Suporte</h3>
+                    <ul>
+                        <li><a href="#">Central de Ajuda</a></li>
+                        <li><a href="#">Reportar Problema</a></li>
+                        <li><a href="#">Contato</a></li>
+                        <li><a href="#">Termos de Serviço</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Roblox Condo. Não afiliado à Roblox Corporation. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bot de Imagens -->
+    <div class="image-bot-container">
+        <div class="image-bot-button" id="imageBotButton">
+            <i class="fas fa-images"></i>
+        </div>
+        <div class="image-bot-panel" id="imageBotPanel">
+            <div class="image-bot-header">
+                <div class="image-bot-title">Roblox Condo Images</div>
+                <div class="image-bot-close" id="imageBotClose">&times;</div>
+            </div>
+            <div class="image-bot-content" id="imageBotContent">
+                <!-- As imagens serão inseridas aqui pelo JavaScript -->
+            </div>
+            <div class="image-bot-controls">
+                <button id="prevImage"><i class="fas fa-arrow-left"></i> Anterior</button>
+                <button id="nextImage">Próxima <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Suavizar rolagem para links âncora
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                // Fecha todos os outros itens
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // Abre/fecha o item clicado
+                item.classList.toggle('active');
+            });
+        });
+        
+        // Efeito de destaque no menu conforme rolagem
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navItems = document.querySelectorAll('nav ul li a');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - 300)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === '#' + current) {
+                    item.classList.add('active');
+                }
+            });
+        });
+        
+        // Animação ao carregar a página
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+        });
+
+        // Bot de Imagens
+        const imageBotButton = document.getElementById('imageBotButton');
+        const imageBotPanel = document.getElementById('imageBotPanel');
+        const imageBotClose = document.getElementById('imageBotClose');
+        const imageBotContent = document.getElementById('imageBotContent');
+        const prevImageButton = document.getElementById('prevImage');
+        const nextImageButton = document.getElementById('nextImage');
+
+        // Lista de imagens (você pode adicionar mais URLs aqui)
+        const images = [
+            'https://images.unsplash.com/photo-1633613286848-e6f43bbafb8d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+            'https://images.unsplash.com/photo-1633613286991-611fe299c4be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+            'https://images.unsplash.com/photo-1633613286987-6c8f6d2e4b0a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+            'https://images.unsplash.com/photo-1633613287155-5f5e5b5b5b0a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+            'https://images.unsplash.com/photo-1633613287155-5f5e5b5b5b0a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'
+        ];
+
+        let currentImageIndex = 0;
+
+        // Função para carregar a imagem atual
+        function loadCurrentImage() {
+            imageBotContent.innerHTML = `<img src="${images[currentImageIndex]}" class="image-bot-image" alt="Roblox Condo Image">`;
+        }
+
+        // Mostrar/ocultar o painel do bot
+        imageBotButton.addEventListener('click', function() {
+            imageBotPanel.classList.toggle('active');
+            if (imageBotPanel.classList.contains('active')) {
+                loadCurrentImage();
+            }
+        });
+
+        imageBotClose.addEventListener('click', function() {
+            imageBotPanel.classList.remove('active');
+        });
+
+        // Navegação entre imagens
+        prevImageButton.addEventListener('click', function() {
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            loadCurrentImage();
+        });
+
+        nextImageButton.addEventListener('click', function() {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            loadCurrentImage();
+        });
+
+        // Auto avançar imagens (opcional)
+        let autoAdvanceInterval;
+        
+        function startAutoAdvance() {
+            autoAdvanceInterval = setInterval(function() {
+                currentImageIndex = (currentImageIndex + 1) % images.length;
+                loadCurrentImage();
+            }, 5000); // Muda a cada 5 segundos
+        }
+
+        function stopAutoAdvance() {
+            clearInterval(autoAdvanceInterval);
+        }
+
+        // Inicia o auto avanço quando o painel é aberto
+        imageBotButton.addEventListener('click', function() {
+            if (imageBotPanel.classList.contains('active')) {
+                startAutoAdvance();
+            } else {
+                stopAutoAdvance();
+            }
+        });
+
+        // Pausa o auto avanço quando o mouse está sobre o painel
+        imageBotPanel.addEventListener('mouseenter', stopAutoAdvance);
+        imageBotPanel.addEventListener('mouseleave', startAutoAdvance);
+    </script>
+</body>
+</html>
